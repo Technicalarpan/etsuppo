@@ -22,6 +22,7 @@
 	<th>Id</th><th>Title</th><th>Created on</th><th>Status</th><th></th>
 	</thead>
 	<tbody>
+	{% if not tickets==[] %}
 	{% for ticket in tickets %}
 	<tr>
 	<td>{{ ticket['code'] }}</td>
@@ -34,11 +35,13 @@
 	<span class="tag is-light is-success">Resolved</span>
 	
 	{% elif ticket['status']=='C' %}
-	
-	<span class="tag is-light is-danger">Closed</span>
+	<span class="tag is-light is-warning">Open</span>
 	
 	{% elif ticket['status']=='A' %}
 	<span class="tag is-light is-success">Answered</span>
+	
+		{% elif ticket['status']=='X' %}
+	<span class="tag is-light is-danger">Deleted</span>
 	
 	{% endif %}
 	
@@ -46,6 +49,9 @@
 	<td><a class="button is-small is-primary" href="/ticket/{{ ticket['conversationid'] }}"><i class="fas fa-arrow-circle-right" aria-label="more details"></i></a></td>
 	</tr>
 	{% endfor %}
+	{% else %}
+	<div class="title">No tickets found</div>
+	{% endif %}
 	</tbody>
 	</table>
 	

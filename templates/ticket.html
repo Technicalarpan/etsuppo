@@ -20,20 +20,90 @@
 	
 	<span class="tag is-light is-success">Resolved</span>
 	
-	{% elif data['status']=='C' %}
-	
-	<span class="tag is-light is-danger">Closed</span>
 	
 	{% elif data['status']=='A' %}
 	<span class="tag is-light is-success">Answered</span>
 	
+	{% elif data['status']=='C' %}
+	<span class="tag is-light is-warning">Open</span>
+	
+		{% elif data['status']=='X' %}
+	<span class="tag is-light is-danger">Deleted</span>
 	{% endif %}
 	<br>
 	<p>Made on: {{ data['datecreated'] }}</p>
 	<p>Response on: {{ data['datechanged'] }}</p>
 	<hr>
-	<p class="title is-6 has-text-weight-bold">Latest Update:</p><br>
-	<p>{{ data['preview'] }}</p>
+	<p class="title is-6 has-text-weight-bold">Reply:</p>
+	{% if data['status']=='C' or data['status']=='N' %}
+	<form class="field has-addons" action="/reply/{{ data['code'] }}/">
+  <div class="control">
+    <input class="input" type="text" name="message">
+  </div>
+  <div class="control">
+    <button type="submit" class="button is-primary">
+      <i class="fas fa-angle-double-right"></i>
+    </button>
+  </div>
+</form>
+{% else %}
+You can only reply to open or new tickets
+{% endif %}
+	<hr>
+	<p class="title is-6 has-text-weight-bold">Latest Updates:</p><br>
+	
+	
+	
+	
+	
+	<div class="content">
+	{% for detail in details %}
+	<div class="tags has-addons">
+	<span class="tag">{{ detail['datecreated'] }}</span>
+	
+	{% if detail['rtype']=='S' %}
+	<div class="tag is-info">
+	Ticket Created
+	</div></div>
+	
+	{% elif detail['rtype']=='X' %}
+	<div class="tag is-danger">
+	Ticket Deleted
+	</div></div>
+
+	
+	{% elif detail['rtype']=='I' or detail['rtype']=='R' %}
+	
+	{% for msg in detail['messages'] %}
+	{% if msg['rtype']=='T' %}
+<div class="tag is-link">	{{ msg['message'] }}</div>
+	{% elif msg['rtype']=='N' %}
+	</div>
+	<div class="box">{{ msg['message'] }}</div>
+	{% endif %}
+	{% endfor %}
+	
+	
+	{% elif detail['rtype']=='M' %}
+	<div class="tag is-primary">Message
+	</div>
+	</div>
+	<div class="box">
+	{% for msg in detail['messages'] %}
+	{% if msg['rtype']=='F' %}
+	<div class="tag is-primary"><i class="fas fa-paperclip"></i> File</div>
+	
+	{% elif msg['rtype']=='M' %}
+	<p>
+	{% autoescape false %} 
+	{{ msg['message'] | replace('\n', '<br>') }} {% endautoescape %}
+	<p>
+	{% endif %}
+	{% endfor %}
+	</div>
+	{% endif %}<br>
+	{% endfor %}
+	</div>
 </div></section>
 </body>
 </html>
