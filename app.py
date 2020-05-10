@@ -14,6 +14,7 @@ def showdat(email,name,p):
 	
 	try:
 		j=json.loads(requests.get(url).text)['response']['conversations']
+		j=j[::-1]
 	except:
 		return'<h1>No tickets found</h1>'
 	
