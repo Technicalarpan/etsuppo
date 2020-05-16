@@ -64,30 +64,27 @@ You can only reply to open or new tickets
 	{% if detail['rtype']=='S' %}
 	<div class="tag is-info">
 	Ticket Created
-	</div></div>
+	</div>
 	
 	{% elif detail['rtype']=='X' %}
 	<div class="tag is-danger">
 	Ticket Deleted
-	</div></div>
+	</div>
 
 	
-	{% elif detail['rtype']=='I' or detail['rtype']=='R' %}
+	{% elif detail['rtype']=='R' %}
 	
 	{% for msg in detail['messages'] %}
 	{% if msg['rtype']=='T' %}
-<div class="tag is-link">	{{ msg['message'] }}</div>
+	<div class="tag is-link">{{ msg['message'] }}</div>
 	{% elif msg['rtype']=='N' %}
-	</div>
 	<div class="box">{{ msg['message'] }}</div>
 	{% endif %}
 	{% endfor %}
 	
 	
 	{% elif detail['rtype']=='M' %}
-	<div class="tag is-primary">Message
-	</div>
-	</div>
+	<div class="tag is-primary">Message</div>
 	<div class="box">
 	{% for msg in detail['messages'] %}
 	{% if msg['rtype']=='F' %}
@@ -96,8 +93,9 @@ You can only reply to open or new tickets
 	{% elif msg['rtype']=='M' %}
 	<p>
 	{% autoescape false %} 
-	{{ msg['message'] | replace('\n', '<br>') }} {% endautoescape %}
-	<p>
+	{{ msg['message'] | replace('\n', '<br>') }}
+	{% endautoescape %}
+	</p>
 	{% endif %}
 	{% endfor %}
 	</div>
