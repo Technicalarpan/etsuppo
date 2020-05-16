@@ -58,8 +58,9 @@ You can only reply to open or new tickets
 	
 	<div class="content">
 	{% for detail in details %}
-	<div class="tags has-addons">
-	<span class="tag">{{ detail['datecreated'] }}</span>
+		
+	<div class="tags has-addons">{% if not detail['rtype']=='M' or detail['rtype']=='I' %}
+	<span class="tag">{{ detail['datecreated'] }}</span>{% endif %}
 	
 	{% if detail['rtype']=='S' %}
 	<div class="tag is-info">
