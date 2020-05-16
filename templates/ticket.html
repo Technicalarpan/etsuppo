@@ -96,6 +96,10 @@ You can only reply to open or new tickets
 	{{ msg['message'] | replace('\n', '<br>') }}
 	{% endautoescape %}
 	</p>
+	{% elif msg['rtype']=='Z' %}
+		<p class="has-text-primary">You</p>
+	{% elif msg['rtype']=='T' and msg['message']=='wrote note' %}
+		<p class="has-text-primary">You</p>
 	{% endif %}
 	{% endfor %}
 	</div>
