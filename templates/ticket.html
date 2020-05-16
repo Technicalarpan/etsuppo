@@ -90,7 +90,7 @@ You can only reply to open or new tickets
 	{% if msg['rtype']=='F' %}
 	<div class="tag is-primary"><i class="fas fa-paperclip"></i> File</div>
 	
-	{% elif msg['rtype']=='M' %}
+	{% elif msg['rtype']=='M' or msg['rtype']=='N' %}
 	<p>
 	{% autoescape false %} 
 	{{ msg['message'] | replace('\n', '<br>') }}
