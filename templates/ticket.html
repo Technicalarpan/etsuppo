@@ -83,7 +83,7 @@ You can only reply to open or new tickets
 	{% endfor %}
 	
 	
-	{% elif detail['rtype']=='M' %}
+	{% elif detail['rtype']=='M' or detail['rtype']=='I' %}
 	<div class="tag is-primary">Message</div>
 	<div class="box">
 	{% for msg in detail['messages'] %}
