@@ -97,9 +97,9 @@ You can only reply to open or new tickets
 	{% endautoescape %}
 	</p>
 	{% elif msg['rtype']=='Z' %}{% if not 'email' in msg['message'] %}
-		<p class="has-text-primary">You</p>{% endif %}
+		<div class="tag is-primary is-light">You</div>{% endif %}
 	{% elif msg['rtype']=='T' and msg['message']=='wrote note' %}
-		<p class="has-text-primary">You</p>
+		<div class="tag is-primary is-light">You</div>
 	{% endif %}
 	{% endfor %}
 	</div>
