@@ -15,20 +15,20 @@
 	<h1 class="title">{{ data['subject'] }}</h1>
 	<h3 class="subtitle is-6">ID: #{{ data['code'] }}</h3>
 	{% if data['status']=='N' %}
-	<span class="tag is-light is-warning">New</span>
+	<span class="tag is-light is-warning">New</span><br>
 	{% elif data['status']=='R' %}
 	
-	<span class="tag is-light is-success">Resolved</span>
+	<span class="tag is-light is-success">Resolved</span><br>
 	
 	
 	{% elif data['status']=='A' %}
-	<span class="tag is-light is-success">Answered</span>
+	<span class="tag is-light is-success">Answered</span><br>
 	
 	{% elif data['status']=='C' %}
-	<span class="tag is-light is-warning">Open</span>
+	<span class="tag is-light is-warning">Open</span><br>
 	
 		{% elif data['status']=='X' %}
-	<span class="tag is-light is-danger">Deleted</span>
+	<span class="tag is-light is-danger">Deleted</span><br>
 	{% endif %}
 	<br>
 	<p>Made on: {{ data['datecreated'] }}</p>
