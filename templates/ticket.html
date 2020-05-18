@@ -76,7 +76,6 @@ You can only reply to open or new tickets
 	
 	{% elif detail['rtype']=='M' or detail['rtype']=='I' %}
 		<div class="box">
-			<div class="tag">{{ msg['datecreated'] }}</div>
 		{% for msg in detail['messages'] %}
 		{% if msg['rtype']=='F' %}
 		<div class="tag is-primary"><i class="fas fa-paperclip"></i> File</div>
