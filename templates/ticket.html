@@ -58,51 +58,41 @@ You can only reply to open or new tickets
 	
 	<div>
 	{% for detail in details %}
-		
-	
-	
-	{% if detail['rtype']=='S' %}
-	<div class="tag is-info">
-	Ticket Created
-	</div>
-	
-	{% elif detail['rtype']=='X' %}
+	{% if detail['rtype']=='X' %}
 	<div class="tag is-danger">
 	Ticket Deleted
 	</div>
 
 	
 	{% elif detail['rtype']=='R' %}
-	
-	{% for msg in detail['messages'] %}
-	{% if msg['rtype']=='T' %}
-	<div class="tag is-link">{{ msg['message'] }}</div>
-	{% elif msg['rtype']=='N' %}
-	<div class="box">{{ msg['message'] }}</div>
-	{% endif %}
-	{% endfor %}
+		{% for msg in detail['messages'] %}
+		{% if msg['rtype']=='T' %}
+			<div class="tag is-link">{{ msg['message'] }}</div>
+		{% elif msg['rtype']=='N' %}
+			<div class="box">{{ msg['message'] }}</div>
+		{% endif %}
+		{% endfor %}
 	
 	
 	{% elif detail['rtype']=='M' or detail['rtype']=='I' %}
-	<div class="tag is-primary">Message</div>
-	<div class="box">
-	{% for msg in detail['messages'] %}
-	{% if msg['rtype']=='F' %}
-	<div class="tag is-primary"><i class="fas fa-paperclip"></i> File</div>
-	
-	{% elif msg['rtype']=='M' or msg['rtype']=='N' %}
-	<p>
-	{% autoescape false %} 
-	{{ msg['message'] | replace('\n', '<br>') }}
-	{% endautoescape %}
-	</p>
-	{% elif msg['rtype']=='Z' %}{% if not 'email' in msg['message'] %}
+		<div class="box">
+		{% for msg in detail['messages'] %}
+			<div class="tag is-warning">{{ msg['datecreated'] }}</div>
+		{% if msg['rtype']=='F' %}
+		<div class="tag is-primary"><i class="fas fa-paperclip"></i> File</div>
+		{% elif msg['rtype']=='M' or msg['rtype']=='N' %}
+		<p>
+		{% autoescape false %} 
+		{{ msg['message'] | replace('\n', '<br>') }}
+		{% endautoescape %}
+		</p>
+		{% elif msg['rtype']=='Z' %}{% if not 'email' in msg['message'] %}
 		<div class="tag is-primary is-light">You</div>{% endif %}
-	{% elif msg['rtype']=='T' and msg['message']=='wrote note' %}
+		{% elif msg['rtype']=='T' and msg['message']=='wrote note' %}
 		<div class="tag is-primary is-light">You</div>
-	{% endif %}
-	{% endfor %}
-	</div>
+		{% endif %}
+		{% endfor %}
+		</div>
 	{% endif %}<br>
 	{% endfor %}
 	</div>
