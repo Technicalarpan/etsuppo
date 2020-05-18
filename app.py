@@ -34,6 +34,7 @@ def viewT(id):
 	durl='https://support.earningtrick.in/api/conversations/'+id+'/messages?apikey=PrkJJOmKaFSLcTb8xifW6gUK9jkFzyKW'
 	
 	k=json.loads(requests.get(durl).text)['response']['groups']
+	k=k[:-1]
 	k=k[::-1]
 	return render_template('ticket.html',data=j, details=k)
 	
