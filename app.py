@@ -13,10 +13,11 @@ def index():
 
 
 	for aj in j:
-		lst+=aj["title"]+'\n'
+		if aj["deleted"]=='N':
+			lst+=aj["title"]+'\n'
 	
 	return lst
 	
 
-
-app.run()
+if __name__=='__main__':
+	app.run()
