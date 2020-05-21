@@ -1,53 +1,22 @@
-import requests
-import json
-from flask import Flask, render_template, request, redirect, escape
+import requests, json
+from flask import Flask
+from flask_cors import CORS
 
 app=Flask(__name__)
+cors=CORS(app)
 
 @app.route('/')
 def index():
-	return '<h1>403 Access Forbidden</h1>You aren\'t supposed to be here'
+	lst=""
 
-@app.route('/<string:email>/<string:name>/<string:p>')
-def showdat(email,name,p):
-	url='https://support.earningtrick.in/api/conversations?apikey=PrkJJOmKaFSLcTb8xifW6gUK9jkFzyKW&owneridentifier='+email
-	
-	try:
-		j=json.loads(requests.get(url).text)['response']['conversations']
-		j=j[::-1]
-	except:
-		return'<h1>No tickets found</h1>'
-	
-	
-	return render_template('index.html',name=name,email=email,tickets=j,p=p)
-	
-	
-@app.route('/ticket/<string:id>')
-def viewT(id):
-	
-	url='https://support.earningtrick.in/api/conversations/'+id+'?apikey=PrkJJOmKaFSLcTb8xifW6gUK9jkFzyKW'
-	
-	try:
-		j=json.loads(requests.get(url).text)['response']
-	except:
-		return '<h1>No such ticket found</h1>'
-	durl='https://support.earningtrick.in/api/conversations/'+id+'/messages?apikey=PrkJJOmKaFSLcTb8xifW6gUK9jkFzyKW'
-	
-	k=json.loads(requests.get(durl).text)['response']['groups']
-	del k[0]
-	k=k[::-1]
-	return render_template('ticket.html',data=j, details=k)
-	
-@app.route('/reply/<string:id>/')
-def postit(id):
-	msg=escape(request.args.get('message'))
-	
-	data={'message':msg,'apikey':'PrkJJOmKaFSLcTb8xifW6gUK9jkFzyKW'}
-	
-	done=requests.post('https://support.earningtrick.in/api/conversations/'+id+'/messages', data=data)
-	
-	return redirect('/ticket/'+id)
+	j=json.loads(requests.get('https://support.earningtrick.in/api/knowledgebase/entries?apikey=PrkJJOmKaFSLcTb8xifW6gUK9jkFzyKW').text)['response']['entries']
 
 
-if __name__ == '__main__':
-	app.run()
+	for aj in j:
+		lst+=aj["title"]+'\n'
+	
+	return lst
+	
+
+
+app.run()
