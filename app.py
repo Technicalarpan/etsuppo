@@ -67,5 +67,5 @@ def wut(q):
 		
 		return render_template('res.html',tls=tls,cts=cts,q=q,r=len(tls))
 
-
-app.run()
+if __name__ == '__main__':
+	app.run()
