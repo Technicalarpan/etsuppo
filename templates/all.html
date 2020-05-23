@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" integrity="sha256-qS+snwBgqr+iFVpBB58C9UCxKFhyL03YHpZfdNUhSEw=" crossorigin="anonymous" />
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<section class="section container content">
+<h1>{{ q }}</h1>
+
+<hr>
+
+<div class="columns"> 
+      
+       
+       {% for i in range(r) %}
+       
+        <div class="column is-one-third">
+       <div class="card">
+       <div class="card-content">
+       
+       <div class="title is-4">{{ tls[i] }}</div>
+       <div class="subtitle is-6">{{ cts[i] }}</div>
+       <a href="/s/{{ tls[i] }}">Read More</a>
+       
+       
+       
+       </div></div></div>
+       {% endfor %}
+       
+       </div>
+</section>
