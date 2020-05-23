@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" integrity="sha256-qS+snwBgqr+iFVpBB58C9UCxKFhyL03YHpZfdNUhSEw=" crossorigin="anonymous" />
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<section class="section container content">
+<a onclick="window.history.back();">&larr;Back</a>
+<br>
+<h1>{{ title }}</h1>
+<hr>
+{% autoescape off %}
+{{ content }}
+{% endautoescape %}
+</section>
