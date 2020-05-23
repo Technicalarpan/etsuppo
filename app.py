@@ -32,7 +32,7 @@ def all():
 		titles.append(aj['title'])
 		contents.append(aj['metadescription'])
 		
-	return render_template('res.html',tls=titles,cts=contents,q='All Articles',r=len(titles))
+	return render_template('all.html',tls=titles,cts=contents,q='All Articles',r=len(titles))
 
 
 
