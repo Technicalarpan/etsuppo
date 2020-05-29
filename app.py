@@ -48,7 +48,7 @@ def wut(q):
 		return render_template('article.html',title=title,content=content)
 		
 	elif len(j)==0:
-		return render_template('article.html',title='No Results Found', content='<h4>:(</h4>')
+		return render_template('article.html',title='No Results Found', content='<h4>Try Searching for another term</h4>')
 	
 	elif len(j)>1:
 		tls=[]
