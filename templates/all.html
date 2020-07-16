@@ -1,29 +1,36 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" integrity="sha256-qS+snwBgqr+iFVpBB58C9UCxKFhyL03YHpZfdNUhSEw=" crossorigin="anonymous" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 
-<meta name="viewport" content="width=device-width,initial-scale=1">
+    <section class="section container content">
+        <h1>{{ q }}</h1>
+        
+        <hr>
+        
+        <div class="row"> 
+              
+               
+               {% for i in range(r) %}
+               
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card" >
+                        <div class="card-body">
+                          <h5 class="card-title">{{ tls[i] }}</h5>
+                          <p class="card-text">{{ cts[i] }}</p>
+                          <a href="/s/{{ tls[i] }}" class="card-link">Read More</a>
+                        </div>
+                      </div>
+                </div>
+               {% endfor %}
 
-<section class="section container content">
-<h1>{{ q }}</h1>
-
-<hr>
-
-<div class="columns"> 
-      
-       
-       {% for i in range(r) %}
-       
-        <div class="column is-one-third">
-       <div class="card">
-       <div class="card-content">
-       
-       <div class="title is-4">{{ tls[i] }}</div>
-       <div class="subtitle is-6">{{ cts[i] }}</div>
-       <a href="/s/{{ tls[i] }}">Read More</a>
-       
-       
-       
-       </div></div></div>
-       {% endfor %}
-       
-       </div>
-</section>
+               </div>
+        </section>
+    
+</body>
+</html>
